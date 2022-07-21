@@ -7,7 +7,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 
-import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,26 +20,14 @@ public class OpenPageSteps {
     public WebDriver iAmSetTheWebdriver() {
         driver = DriverManager.setupDriver();
         return driver;
-
     }
 
-    @When("^I open the 'Google' Webpage$")
-    public void iOpenTheGoogleWebpage() throws SQLException, InterruptedException {
-        DriverManager.openPage(driver, "https://www.google.com/");
-        Thread.sleep(1000);
+    @When("I open the {string} Webpage")
+    public void iOpenTheWebpage(String url) throws InterruptedException {
+        driver.get(url);
+        Thread.sleep(3000);
     }
 
-    @When("^I open the 'EPAM' Webpage")
-    public void iOpenTheEPAMWebpage() throws InterruptedException {
-        DriverManager.openPage(driver, "https://www.epam.com/");
-        Thread.sleep(1000);
-    }
-
-    @When("^I open the 'BookDepository' Webpage$")
-    public void iOpenTheBookDEpositoryWebpage() throws InterruptedException {
-        DriverManager.openPage(driver, "https://www.bookdepository.com/");
-        Thread.sleep(1000);
-    }
 
     @Then("I verify the Title, it is {string}")
     public void iVerifyTheGoogleTitleIs(String title) {
@@ -54,6 +41,5 @@ public class OpenPageSteps {
     public void iCloseTheBrowser() {
         DriverManager.quitDriver();
     }
-
 
 }
