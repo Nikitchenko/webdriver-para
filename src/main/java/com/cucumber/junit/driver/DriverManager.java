@@ -11,10 +11,12 @@ public class DriverManager {
     private static final String CHROME_DRIVER_PATH = "src/main/resources/chromedriver.exe";
     private static final String GECKO_DRIVER_PATH = "src/main/resources/geckodriver.exe";
 
-    private static WebDriver driver;
+    private WebDriver driver;
 
+    public DriverManager() {
+    }
 
-    public static WebDriver setupDriver() {
+    public  WebDriver setupDriver() {
 
         String browser = System.getProperty("browser");
 
@@ -34,12 +36,12 @@ public class DriverManager {
         return driver;
     }
 
-    public static WebDriver openPage(WebDriver driver, String url) {
+    public  WebDriver openPage(WebDriver driver, String url) {
         driver.get(url);
         return driver;
     }
 
-    public static void quitDriver() {
+    public void quitDriver() {
         if (driver != null) {
             driver.quit();
         }

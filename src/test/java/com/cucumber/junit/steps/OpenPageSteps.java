@@ -15,19 +15,19 @@ public class OpenPageSteps {
 
 
     private WebDriver driver;
+    private DriverManager driverManager = new DriverManager();
 
     @Given("I am set the Webdriver")
     public WebDriver iAmSetTheWebdriver() {
-        driver = DriverManager.setupDriver();
+        driver = driverManager.setupDriver();
         return driver;
     }
 
     @When("I open the {string} Webpage")
     public void iOpenTheWebpage(String url) throws InterruptedException {
-        driver.get(url);
-        Thread.sleep(3000);
+        driverManager.openPage(driver, url);
+        Thread.sleep(2000);
     }
-
 
     @Then("I verify the Title, it is {string}")
     public void iVerifyTheGoogleTitleIs(String title) {
@@ -39,7 +39,7 @@ public class OpenPageSteps {
 
     @And("I close the Browser")
     public void iCloseTheBrowser() {
-        DriverManager.quitDriver();
+        driverManager.quitDriver();
     }
 
 }
