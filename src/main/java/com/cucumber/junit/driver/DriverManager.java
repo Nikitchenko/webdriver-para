@@ -27,7 +27,7 @@ public class DriverManager {
             System.setProperty("webdriver.firefox.driver", GECKO_DRIVER_PATH);
             driver = new FirefoxDriver();
         } else {
-            throw new IllegalStateException("This driver is not supported: " + System.getProperty("browser"));
+            throw new IllegalStateException("This driver is not supported: " + browser);
         }
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
